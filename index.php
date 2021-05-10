@@ -21,6 +21,21 @@
 <head>
 <meta charset="utf-8">
 <title>Sweetwater Test</title>
+    <script language="javascript">
+        function doReset() {
+            
+        }
+        
+        function doDates() {
+            var xhttp = new XMLHttpRequest();
+             xhttp.onreadystatechange = function() {
+                /* populate DIV */
+               document.getElementById("shipping").innerHTML = this.responseText;
+            }
+            xhttp.open("GET", "inc/doDates.php", true);
+            xhttp.send();
+        }
+    </script>    
 </head>
 
 <body>
@@ -74,35 +89,19 @@
     <!-- get or reset shipping dates -->
     <h2>Shipping: </h2>
     <div>
-        <button onClick="doDates()" value="Add Dates">Add Dates</button> 
-        <button onClick="doReset()" value="Reset Dates">Reset Dates</button>
+        <button onclick="doDates()" value="Add Dates">Add Dates</button> 
+        <button onclick="doReset()" value="Reset Dates">Reset Dates</button>
     </div>
     <div id="shipping">
         <?php 
         if ($ships->num_rows > 0) {
             foreach ($ships as $ship) {
-                $that = $ship['shipdate_expected'];
+                $that = $ship["shipdate_expected"];
                 echo "<p>$that</p>";
             }
         } else {
                 echo "No results found.";
         } ?>
-            
-
+    </div>
 </body>
-    <script language="javascript">
-        function doReset() {
-            
-        }
-        
-        function doDates() {
-            var xhttp = new XMLHttpRequest();
-             xhttp.onreadystatechange = function() {
-                /* populate DIV */
-               document.getElementById("shipping").innerHTML = this.responseText;
-            }
-            xhttp.open("GET", "inc/doDates.php", true);
-            xhttp.send();
-        }
-    </script>    
 </html>
