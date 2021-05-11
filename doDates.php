@@ -10,5 +10,5 @@
     }
     $sql = "SELECT REGEXP_SUBSTR(comments, '([0-9]{2}/[0-9]{2})/[0-9]{2}') AS dates FROM sweetwater_test WHERE REGEXP_SUBSTR(comments, '([0-9]{2}/[0-9]{2})/[0-9]{2}') != ''";
     $dates = $conn->query($sql);
-    print_r($dates);
+    echo $dates;
 ?>
